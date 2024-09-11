@@ -1,0 +1,85 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Función para imprimir una matriz
+void imprimirMatriz(const vector<vector<int>>& matriz) {
+    for (const auto& fila : matriz) {
+        for (int valor : fila) {
+            cout << valor << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Función para sumar dos matrices
+vector<vector<int>> sumarMatrices(const vector<vector<int>>& matriz1, const vector<vector<int>>& matriz2) {
+    int filas = matriz1.size();
+    int columnas = matriz1[0].size();
+    vector<vector<int>> resultado(filas, vector<int>(columnas));
+
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            resultado[i][j] = matriz1[i][j] + matriz2[i][j];
+        }
+    }
+    return resultado;
+}
+
+
+// Función para restar dos matrices
+vector<vector<int>> restarMatrices(const vector<vector<int>>& matriz1, const vector<vector<int>>& matriz2) {
+    int filas = matriz1.size();
+    int columnas = matriz1[0].size();
+    vector<vector<int>> resultado(filas, vector<int>(columnas));
+
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            resultado[i][j] = matriz1[i][j] - matriz2[i][j];
+        }
+    }
+    return resultado;
+}
+
+
+
+int main() {
+    // Documentación del programa
+    /*
+     * Este programa realiza operaciones de suma y resta entre dos matrices.
+     * 
+     *
+     * Funciones:
+     * - imprimirMatriz: Imprime una matriz en la consola.
+     * - sumarMatrices: Suma dos matrices.
+     * - restarMatrices: Resta dos matrices.
+     *
+     * Ejecución:
+     * - Se definen dos matrices de ejemplo.
+     * - Se llaman a las funciones para sumar y restar las matrices.
+     * - Se muestran los resultados.
+     */
+
+    // Definición de matrices de ejemplo
+    vector<vector<int>> matrizA = {{1, 2, 3}, {4, 5, 6}};
+    vector<vector<int>> matrizB = {{6, 5, 4}, {3, 2, 1}};
+
+    // Mostrar matrices originales
+    cout << "Matriz A:" << endl;
+    imprimirMatriz(matrizA);
+
+    cout << "Matriz B:" << endl;
+    imprimirMatriz(matrizB);
+
+    // Sumar matrices
+    vector<vector<int>> suma = sumarMatrices(matrizA, matrizB);
+    cout << "\nSuma de las matrices:" << endl;
+    imprimirMatriz(suma);
+
+    // Restar matrices
+    vector<vector<int>> resta = restarMatrices(matrizA, matrizB);
+    cout << "\nResta de las matrices:" << endl;
+    imprimirMatriz(resta);
+
+    return 0;
+}
