@@ -1,0 +1,82 @@
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// Función para imprimir una matriz
+void imprimirMatriz(const vector<vector<int>>& matriz) {
+    for (const auto& fila : matriz) {
+        for (int valor : fila) {
+            cout << valor << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Función para multiplicar una matriz por un escalar
+vector<vector<int>> multiplicarPorEscalar(const vector<vector<int>>& matriz, int escalar) {
+    int filas = matriz.size();
+    int columnas = matriz[0].size();
+    vector<vector<int>> resultado(filas, vector<int>(columnas));
+
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            resultado[i][j] = matriz[i][j] * escalar;
+        }
+    }
+    return resultado;
+}
+
+int main() {
+    // Documentación del programa
+    /*
+     * Este programa realiza la multiplicación de una matriz por un escalar.
+     * Permite al usuario ingresar las dimensiones y los valores de la matriz, así como el valor del escalar.
+     * 
+     * Funciones:
+     * - imprimirMatriz: Imprime una matriz en la consola.
+     * - multiplicarPorEscalar: Multiplica una matriz por un escalar.
+     * 
+     * Ejecución:
+     * - Solicita al usuario las dimensiones de la matriz.
+     * - Solicita al usuario los valores de la matriz.
+     * - Solicita al usuario el valor del escalar.
+     * - Llama a la función para multiplicar la matriz por el escalar.
+     * - Muestra el resultado.
+     */
+
+    int filas, columnas, escalar;
+
+    // Solicitar dimensiones de la matriz
+    cout << "Ingrese el número de filas y columnas de la matriz: ";
+    int response;
+    cin>>response;
+    filas = response;
+    columnas = response;
+
+    // Definición de la matriz
+    vector<vector<int>> matriz(filas, vector<int>(columnas));
+
+    // Ingreso de datos para la matriz
+    cout << "Ingrese los valores de la matriz:" << endl;
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            cout << "Elemento [" << i << "][" << j << "]: ";
+            cin >> matriz[i][j];
+        }
+    }
+
+    // Solicitar el valor del escalar
+    cout << "Ingrese el valor del escalar: ";
+    cin >> escalar;
+
+    // Mostrar matriz original
+    cout << "Matriz original:" << endl;
+    imprimirMatriz(matriz);
+
+    // Multiplicar matriz por escalar
+    vector<vector<int>> resultado = multiplicarPorEscalar(matriz, escalar);
+    cout << "\nMatriz después de multiplicar por el escalar:" << endl;
+    imprimirMatriz(resultado);
+
+    return 0;
+}
