@@ -1,0 +1,111 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Función para imprimir una matriz
+void imprimirMatriz(const vector<vector<int>>& matriz) {
+    for (const auto& fila : matriz) {
+        for (int valor : fila) {
+            cout << valor << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Función para sumar dos matrices
+vector<vector<int>> sumarMatrices(const vector<vector<int>>& matriz1, const vector<vector<int>>& matriz2) {
+    int filas = matriz1.size();
+    int columnas = matriz1[0].size();
+    vector<vector<int>> resultado(filas, vector<int>(columnas));
+
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            resultado[i][j] = matriz1[i][j] + matriz2[i][j];
+        }
+    }
+    return resultado;
+}
+
+// Función para restar dos matrices
+vector<vector<int>> restarMatrices(const vector<vector<int>>& matriz1, const vector<vector<int>>& matriz2) {
+    int filas = matriz1.size();
+    int columnas = matriz1[0].size();
+    vector<vector<int>> resultado(filas, vector<int>(columnas));
+
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            resultado[i][j] = matriz1[i][j] - matriz2[i][j];
+        }
+    }
+    return resultado;
+}
+
+int main() {
+    // Documentación del programa
+    /*
+     * Este programa realiza operaciones de suma y resta entre dos matrices.
+     * Permite al usuario ingresar las dimensiones y los valores de las matrices.
+     * 
+     * Funciones:
+     * - imprimirMatriz: Imprime una matriz en la consola.
+     * - sumarMatrices: Suma dos matrices.
+     * - restarMatrices: Resta dos matrices.
+     * 
+     * Ejecución:
+     * - Solicita al usuario las dimensiones de las matrices.
+     * - Solicita al usuario los valores de las matrices.
+     * - Llama a las funciones para sumar y restar las matrices.
+     * - Muestra los resultados.
+     */
+
+    int filas, columnas;
+
+    // Solicitar dimensiones de las matrices
+    cout << "Ingrese el número de filas y columnas de las matrices: ";
+    int response;
+    cin>>response;
+    filas = response;
+    columnas = response;
+    
+    // Definición de matrices
+    vector<vector<int>> matrizA(filas, vector<int>(columnas));
+    vector<vector<int>> matrizB(filas, vector<int>(columnas));
+
+    // Ingreso de datos para la primera matriz
+    cout << "Ingrese los valores de la matriz A:" << endl;
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            cout << "Elemento [" << i << "][" << j << "]: ";
+            cin >> matrizA[i][j];
+        }
+    }
+
+    // Ingreso de datos para la segunda matriz
+    cout << "Ingrese los valores de la matriz B:" << endl;
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            cout << "Elemento [" << i << "][" << j << "]: ";
+            cin >> matrizB[i][j];
+        }
+    }
+
+    // Mostrar matrices originales
+    cout << "Matriz A:" << endl;
+    imprimirMatriz(matrizA);
+
+    cout << "Matriz B:" << endl;
+    imprimirMatriz(matrizB);
+
+    // Sumar matrices
+    vector<vector<int>> suma = sumarMatrices(matrizA, matrizB);
+    cout << "\nSuma de las matrices:" << endl;
+    imprimirMatriz(suma);
+
+    // Restar matrices
+    vector<vector<int>> resta = restarMatrices(matrizA, matrizB);
+    cout << "\nResta de las matrices:" << endl;
+    imprimirMatriz(resta);
+
+    return 0;
+}
