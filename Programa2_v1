@@ -1,0 +1,70 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+// Función para imprimir una matriz
+void imprimirMatriz(const vector<vector<int>>& matriz) {
+    for (const auto& fila : matriz) {
+        for (int valor : fila) {
+            cout << valor << " ";
+        }
+        cout << endl;
+    }
+}
+
+// Función para multiplicar una matriz por un escalar
+vector<vector<int>> multiplicarPorEscalar(const vector<vector<int>>& matriz, int escalar) {
+    int filas = matriz.size();
+    int columnas = matriz[0].size();
+    vector<vector<int>> resultado(filas, vector<int>(columnas));
+
+    for (int i = 0; i < filas; ++i) {
+        for (int j = 0; j < columnas; ++j) {
+            resultado[i][j] = matriz[i][j] * escalar;
+        }
+    }
+    return resultado;
+}
+
+int main() {
+    // Documentación del programa
+    /*
+     * Este programa multiplica una matriz por un escalar.
+     * La matriz y el escalar están definidos directamente en el código.
+     * 
+     * Funciones:
+     * - imprimirMatriz: Imprime una matriz en la consola.
+     * - multiplicarPorEscalar: Multiplica cada elemento de una matriz por un escalar.
+     * 
+     * Ejecución:
+     * - Usa una matriz predefinida.
+     * - Solicita al usuario el valor del escalar.
+     * - Llama a la función para multiplicar la matriz por el escalar.
+     * - Muestra la matriz original y la matriz resultante después de la multiplicación.
+     */
+
+    // Definición de una matriz predefinida
+    vector<vector<int>> matriz = {
+        {1, 2, 3},
+        {4, 5, 6},
+        {7, 8, 9}
+    };
+
+    int escalar;
+
+    // Solicitar el valor del escalar
+    cout << "Ingrese el valor del escalar: ";
+    cin >> escalar;
+
+    // Mostrar matriz original
+    cout << "Matriz original:" << endl;
+    imprimirMatriz(matriz);
+
+    // Multiplicar matriz por escalar
+    vector<vector<int>> resultado = multiplicarPorEscalar(matriz, escalar);
+    cout << "\nMatriz después de multiplicar por el escalar:" << endl;
+    imprimirMatriz(resultado);
+
+    return 0;
+}
